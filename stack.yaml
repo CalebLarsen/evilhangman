@@ -1,0 +1,20 @@
+snapshot:
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/23/18.yaml
+
+# User packages to be built.
+# Various formats can be used as shown in the example below.
+#
+# packages:
+# - some-directory
+# - https://example.com/foo/bar/baz-0.0.2.tar.gz
+#   subdirs:
+#   - auto-update
+#   - wai
+packages:
+- Trie
+- .
+
+# extra-deps:
+# - acme-missiles-0.3
+ 
+system-ghc: true

@@ -1,0 +1,16 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "evilhangman:lib"
+
+    - path: "./app/Main.hs"
+      component: "evilhangman:exe:evilhangman-exe"
+
+    - path: "./test"
+      component: "evilhangman:test:evilhangman-test"
+
+    - path: "Trie/src"
+      component: "Trie:lib"
+
+    - path: "Trie/test"
+      component: "Trie:test:Trie-test"
