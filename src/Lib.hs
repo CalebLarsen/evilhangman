@@ -8,6 +8,7 @@ import Text.Printf (printf)
 import Trie as T
 import System.IO (stdout)
 import GHC.IO.Handle (hFlush)
+import Data.List (intersperse, sort)
 
 startGame :: IO ()
 startGame = do
@@ -26,6 +27,6 @@ gameLoop gs = do
     hFlush stdout
     guess <- getLine
     let c = if null guess then ' ' else guess!!0
-    let newg = takeTurn c g
-    printf "%s | %d/%d remain\n" (fixedChars newg) (T.size (trie newg)) (origSize newg)
+    newg <- if c == ' ' || elem c (usedChars g) then gameLoop gs else return $ takeTurn c g
+    printf "%s | %d/%d remain | [%s]\n" (intersperse ' ' (fixedChars newg)) (T.size (trie newg)) (origSize newg) (intersperse ' ' (sort (usedChars newg)))
     if missingLetters newg == 0 then return newg else gameLoop (return newg)
