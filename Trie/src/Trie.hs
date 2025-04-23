@@ -11,7 +11,7 @@ data Trie = Trie {
 }
 
 instance Show Trie where
-  show t = intercalate "\n" $ getAll t 
+  show t = intercalate "\n" $ getAll t
 
 -- Constructors
 empty :: Trie
@@ -23,7 +23,7 @@ fromList = Prelude.foldr Trie.insert Trie.empty
 contains :: String -> Trie -> Bool
 contains [] t = end t
 contains (c:cs) t =
-  let mchild = Map.lookup c (children t)
+  let mchild = Map.lookup c $ children t
     in case mchild of
       Just a  -> contains cs a
       Nothing -> False
@@ -39,9 +39,9 @@ lookup (c:cs) t =
 insert :: String -> Trie -> Trie
 insert [] t = Trie { children = children t, end = True }
 insert (c:cs) t =
-  let mchild = Map.lookup c (children t)
-      child = Trie.insert cs (fromMaybe Trie.empty mchild)
-      kids = Map.insert c child (children t)
+  let mchild = Map.lookup c $ children t
+      child = Trie.insert cs $ fromMaybe Trie.empty mchild
+      kids = Map.insert c child $ children t
         in Trie {children = kids, end = end t}
 
 getAll :: Trie -> [String]
